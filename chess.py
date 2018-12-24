@@ -1,9 +1,9 @@
 import pygame
 # инициализация Pygame:
 pygame.init()
-width, number = [int(x) for x in input().split()]
+w, n = [int(x) for x in input().split()]
 # размеры окна:
-size = width, width
+size = w, w
 # screen — холст, на котором нужно рисовать:
 screen = pygame.display.set_mode(size)
 # формирование кадра:
@@ -11,9 +11,31 @@ screen = pygame.display.set_mode(size)
 
 
 def draw():
-    screen.fill((0, 0, 0))
-    for i in range(width//number, width, width//number):
-        
+    cell = 0
+    if n % 2 != 0:
+        for i in range(0, w, w//n):
+            for j in range(0, w, w//n):
+                if cell == 0:
+                    pygame.draw.rect(screen, pygame.Color('black'), (i, j, w//n, w//n), 0)
+                    cell = 1
+                else:
+                    pygame.draw.rect(screen, pygame.Color('white'), (i, j, w // n, w // n), 0)
+                    cell = 0
+    elif n % 2 == 0:
+        cell = 1
+        for i in range(0, w, w//n):
+            for j in range(0, w, w//n):
+                if cell == 0:
+                    pygame.draw.rect(screen, pygame.Color('black'), (i, j, w//n, w//n), 0)
+                    cell = 1
+                else:
+                    pygame.draw.rect(screen, pygame.Color('white'), (i, j, w // n, w // n), 0)
+                    cell = 0
+            cell += 1
+            cell %= 2
+
+
+
 
 
 
