@@ -15,8 +15,10 @@ def draw():
     red = pygame.Color('red')
     blue = pygame.Color('blue')
     green = pygame.Color('green')
-
-    pygame.draw.ellipse(screen, red, )
+    color_list = [blue, green, red]
+    for i in range(k):
+        pygame.draw.ellipse(screen, color_list[i % 3],
+                            (0 + i*n, 0 + i*n, width - 2 * i * n, height - 2 * i * n), 0)
 
 
 draw()
