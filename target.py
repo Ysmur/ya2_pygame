@@ -1,9 +1,10 @@
 import pygame
 # инициализация Pygame:
 pygame.init()
-width, number = [int(x) for x in input().split()]
 # размеры окна:
-size = width, width
+n = int(input())
+k = int(input())
+size = width, height = n * k * 2, n * k * 2
 # screen — холст, на котором нужно рисовать:
 screen = pygame.display.set_mode(size)
 # формирование кадра:
@@ -11,11 +12,11 @@ screen = pygame.display.set_mode(size)
 
 
 def draw():
-    screen.fill((0, 0, 0))
-    for i in range(width//number, width, width//number):
-        
+    red = pygame.Color('red')
+    blue = pygame.Color('blue')
+    green = pygame.Color('green')
 
-
+    pygame.draw.ellipse(screen, red, )
 
 
 draw()
