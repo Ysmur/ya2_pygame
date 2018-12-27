@@ -11,7 +11,8 @@ screen = pygame.display.set_mode(size)
 # команды рисования на холсте
 def draw():
     screen.fill((0, 0, 0))
-    pygame.draw.line(screen, (250, 150, 0), (0, 0), (width, height), 5)
+    pygame.draw.line(screen, (255, 255, 255), (0, 0), (width, height), 5)
+    pygame.draw.line(screen, (255, 255, 255), (0, height), (width, 0), 5)
 
 
 
