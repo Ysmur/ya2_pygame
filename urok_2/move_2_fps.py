@@ -20,7 +20,7 @@ while running:
     # отрисовка и изменение свойств объектов
     # ...
     screen.fill((0, 0, 0))
-    pygame.draw.circle(screen, (255, 0, 0), (int(x_pos), 200), 20)
+    pygame.draw.circle(screen, (255, 0, 0), (20, 200), int(x_pos))
     x_pos += v / fps
     clock.tick(fps)
 

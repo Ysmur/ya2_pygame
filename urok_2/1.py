@@ -8,16 +8,14 @@ size = width, height = 800, 600
 screen = pygame.display.set_mode(size)
 # метод clock.tick() возвращает количество миллисекунд, прошедших с момента последнего вызова
 clock = pygame.time.Clock()
-# формирование кадра:
-# команды рисования на холсте
+
 running = True
-x_pos = 0
-v = 20   # пикселей в секунду
 while running:
+    screen.fill((0, 0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill((0, 0, 0))
-    pygame.draw.circle(screen, (255, 0, 0), (int(x_pos), 200), 20)
-    x_pos += v * clock.tick() / 1000 # v * t в секундах
+        if event.type == pygame.MOUSEMOTION:
+            pygame.draw.circle(screen, (0, 0, 255), event.pos, 20)
     pygame.display.flip()
+    clock.tick(30)
