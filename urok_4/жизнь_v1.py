@@ -66,6 +66,24 @@ class Life(Board):
                                  (x * self.cell_size + self.left, y * self.cell_size + self.top, self.cell_size,
                                   self.cell_size), 1)
 
+    def next_move(self):
+        for y in range(self.height):
+            for x in range(self.width):
+                s = 0  # сумма окружающих клеток
+                for dy in range(-1, 2):
+                    for dx in range(-1, 2):
+                        if x + dx < 0 or x + dx >= self.width or y + dy < 0 or y + dy >= self.height:
+                            continue
+                        s += self.board[y + dy][x + dx]
+                s -= self.board[y][x]
+                if s == 3:
+                    self.board[y][x] = 1
+                elif s < 2 or s > 3:
+                    self.board[y][x] = 0
+
+
+
+
 
 board = Life(30, 30, 10, 10, 15)
 running = True
@@ -75,6 +93,8 @@ while running:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             board.get_click(event.pos)
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            board.next_move()
     screen.fill((0, 0, 0))
     board.render()
     pygame.display.flip()
