@@ -24,6 +24,7 @@ def load_image(name, colorkey=None):
 
 class Bomb(pygame.sprite.Sprite):
     image = load_image("bomb.png")
+    image_boom = load_image("boom.png")
 
     def __init__(self, group):
         # НЕОБХОДИМО вызвать конструктор родительского класса Sprite
@@ -35,6 +36,10 @@ class Bomb(pygame.sprite.Sprite):
 
     def update(self):
         self.rect = self.rect.move(random.randrange(3) - 1, random.randrange(3) - 1)
+
+    def get_event(self, event):
+        if self.rect.collidepoint(event.pos):
+            self.image = self.image_boom
 
 
 clock = pygame.time.Clock()
@@ -51,9 +56,13 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            for bomb in all_sprites:
+                bomb.get_event(event)
     screen.fill(pygame.Color("white"))
     all_sprites.draw(screen)
     all_sprites.update()
     pygame.display.flip()
+    clock.tick(5)
 
 pygame.quit()
